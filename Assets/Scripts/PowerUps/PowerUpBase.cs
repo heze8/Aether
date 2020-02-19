@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class PowerUpBase : MonoBehaviour
 {
     [SerializeField]
-    protected const float m_BuffDuration = 5.0f;
+    protected const float m_BuffDuration = 5.5f;
 
     protected float m_TimeOfActivation = -1.0f;
 
@@ -18,6 +18,16 @@ public abstract class PowerUpBase : MonoBehaviour
     }
 
     public void InitializePowerUp()
+    {
+        if (interactor != null && interactor is Player player)
+        {
+            PlayPickUpSound();
+            HandlePowerUp(player);
+            Destroy(gameObject);
+        }
+    }
+
+    private void PlayPickUpSound()
     {
         m_TimeOfActivation = Time.time;
         OnPowerUpActivated();
