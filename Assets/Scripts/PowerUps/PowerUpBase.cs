@@ -19,16 +19,6 @@ public abstract class PowerUpBase : MonoBehaviour
 
     public void InitializePowerUp()
     {
-        if (interactor != null && interactor is Player player)
-        {
-            PlayPickUpSound();
-            HandlePowerUp(player);
-            Destroy(gameObject);
-        }
-    }
-
-    private void PlayPickUpSound()
-    {
         m_TimeOfActivation = Time.time;
         OnPowerUpActivated();
     }
